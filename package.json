@@ -6,7 +6,7 @@
         "less": "^3.9.0"
     },
     "scripts": {
-        "build-less": "./node_modules/.bin/lessc src/amirite-embed.less public/amirite-embed.min.css"
+        "build-less": "./node_modules/.bin/lessc -x src/amirite-embed.less dist/amirite-embed/amirite-embed.min.css"
     },
     "author": "",
     "license": "ISC"
