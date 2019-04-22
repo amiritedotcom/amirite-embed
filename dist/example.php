@@ -34,7 +34,7 @@
     $guzzle = new \GuzzleHttp\Client();
     $amirite = new \AmiriteEmbed\AmiriteClient($guzzle);
     $post = $amirite->getPost();
-    echo $post->render();
+    echo $post->render('https://www.amirite.com/');
 
     ?>
 </div>

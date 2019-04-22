@@ -5,6 +5,11 @@ namespace AmiriteEmbed;
 class Post
 {
     /**
+     * @var int
+     */
+    public $id;
+
+    /**
      * @var string
      */
     public $html;
@@ -25,38 +30,26 @@ class Post
     }
 
     /**
-     * @return string
-     */
-    public function getAgreeUrl()
-    {
-        return $this->url.'?vote=1';
-    }
-
-    /**
-     * @return string
-     */
-    public function getDisagreeUrl()
-    {
-        return $this->url.'?vote=-1';
-    }
-
-    /**
      * Return the HTML to display the post.
+     *
+     * @param string|null $linkUrl
      *
      * @return string
      */
-    public function render()
+    public function render($linkUrl = null)
     {
+        $url = ($linkUrl ?: $this->url).'?votePostId='.$this->id;
+
         return '<div class="amirite-embed">
-            <a class="amirite-header" href="'.$this->url.'" target="_blank"  rel="external">
+            <a class="amirite-header" href="'.$url.'" target="_blank"  rel="external">
                 <img src="/amirite-embed/amirite-white.svg" alt="Amirite" />
                 <small>Cast your vote...</small>
             </a>
             <div class="amirite-post">
-                <a class="amirite-post-text" href="'.$this->url.'" rel="external">'.$this->html.'</a>
+                <a class="amirite-post-text" target="_blank" href="'.$url.'" rel="external">'.$this->html.'</a>
                 <p>
-                    <a href="'.$this->getAgreeUrl().'" target="_blank" rel="external" class="amirite-vote-btn amirite-yya-btn">Yeah You Are</a>
-                    <a href="'.$this->getDisagreeUrl().'" target="_blank"  rel="external" class="amirite-vote-btn amirite-nw-btn">No Way</a>
+                    <a href="'.$url.'&vote=1" target="_blank" rel="external" class="amirite-vote-btn amirite-yya-btn">Yeah You Are</a>
+                    <a href="'.$url.'&vote=-1" target="_blank"  rel="external" class="amirite-vote-btn amirite-nw-btn">No Way</a>
                 </p>
             </div>
         </div>';
