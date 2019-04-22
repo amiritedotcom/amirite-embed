@@ -1,7 +1,11 @@
+Embed Amirite posts on a Website.
 
-## TODO
+Rather than using an `<iframe>` which may not be supported (e.g. in a Cordova app) this has a PHP class to fetch a post and return its HTML. Some CSS is also provided here to style the post on the page.
 
-Voting should only vote not undo.
+## Install
+    composer require --prefer-source amiritedotcom/amirite-embed:dev-master
+    
+## Update
+Because I've been lazy and not used git tags to version this you can update with:
 
-When clicking on the post go to the front page but add the clicked on post to the top of the page.
-
+    composer clearcache; composer require --prefer-source amiritedotcom/amirite-embed:dev-master    
