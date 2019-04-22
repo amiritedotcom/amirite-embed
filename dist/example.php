@@ -19,7 +19,7 @@
         margin: auto;
     }
     </style>
-    <link rel="stylesheet" href="../dist/amirite-embed.min.css"/>
+    <link rel="stylesheet" href="/amirite-embed/amirite-embed.min.css"/>
 
 </head>
 <body>
