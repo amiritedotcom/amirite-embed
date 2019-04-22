@@ -49,7 +49,7 @@ class Post
     {
         return '<div class="amirite-embed">
             <a class="amirite-header" href="'.$this->url.'" target="_blank"  rel="external">
-                <img src="../dist/amirite-white.svg" alt="Amirite" />
+                <img src="/amirite-embed/amirite-white.svg" alt="Amirite" />
                 <small>Cast your vote...</small>
             </a>
             <div class="amirite-post">
