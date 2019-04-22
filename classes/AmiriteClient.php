@@ -68,18 +68,19 @@ class AmiriteClient
      * @param string $endpoint
      * @param array $params
      *
-     * @return \stdClass
+     * @return array
      */
     private function get($endpoint, $params)
     {
         $url = $this->apiUrl.$endpoint.'?'.http_build_query($params);
 
-        try {
+        $response = $this->guzzleClient->get($url);
+        /*try {
             $response = $this->guzzleClient->get($url);
         } catch (\GuzzleHttp\Exception\ServerException $e) {
             print_r($e->getResponse()->getBody()->getContents());
-        }
+        }*/
 
-        return \GuzzleHttp\json_decode($response->getBody());
+        return \GuzzleHttp\json_decode($response->getBody(), true);
     }
 }
