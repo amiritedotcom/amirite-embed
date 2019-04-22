@@ -1,5 +1,5 @@
 {
-    "name": "amirite/amirite-embed",
+    "name": "amiritedotcom/amirite-embed",
     "require": {
         "guzzlehttp/guzzle": "^6.3"
     },
