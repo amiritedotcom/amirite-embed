@@ -9,7 +9,6 @@ class AmiriteClient
     /**
      * @var string
      */
-    //private $apiUrl = 'https://api.amirite.site/';
     private $apiUrl = 'https://api.amirite.com/';
 
     /**
@@ -17,6 +16,9 @@ class AmiriteClient
      */
     private $guzzleClient;
 
+    /**
+     * @param Client $guzzleClient
+     */
     public function __construct(Client $guzzleClient)
     {
         $this->guzzleClient = $guzzleClient;
@@ -31,7 +33,7 @@ class AmiriteClient
     }
 
     /**
-     * @param
+     * Get one random post from Amirite.
      *
      * @return Post|null
      */
@@ -62,6 +64,12 @@ class AmiriteClient
         return null;
     }
 
+    /**
+     * @param string $endpoint
+     * @param array $params
+     *
+     * @return \stdClass
+     */
     private function get($endpoint, $params)
     {
         $url = $this->apiUrl.$endpoint.'?'.http_build_query($params);

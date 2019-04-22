@@ -13,29 +13,30 @@
         margin: 0;
         padding: 10px;
     }
+
     #demo {
         max-width: 600px;
         margin: auto;
     }
     </style>
-    <link rel="stylesheet" href="../dist/amirite-embed.min.css" />
+    <link rel="stylesheet" href="../dist/amirite-embed.min.css"/>
 
 </head>
 <body>
 
 <div id="demo">
-<?php
+    <?php
 
-require __DIR__.'/../vendor/autoload.php';
+    require __DIR__.'/../vendor/autoload.php';
 
-ini_set('display_errors', 1);
+    ini_set('display_errors', 1);
 
-$guzzle = new \GuzzleHttp\Client();
-$amirite = new \AmiriteEmbed\AmiriteClient($guzzle);
-$post = $amirite->getPost();
-echo $post->render();
+    $guzzle = new \GuzzleHttp\Client();
+    $amirite = new \AmiriteEmbed\AmiriteClient($guzzle);
+    $post = $amirite->getPost();
+    echo $post->render();
 
-?>
+    ?>
 </div>
 
 </body>

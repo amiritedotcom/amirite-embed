@@ -4,28 +4,45 @@ namespace AmiriteEmbed;
 
 class Post
 {
+    /**
+     * @var string
+     */
     public $html;
 
+    /**
+     * @var string
+     */
     public $url;
 
-    public function __construct($data)
+    /**
+     * @param array $data
+     */
+    public function __construct(array $data = [])
     {
         foreach ($data as $key => $value) {
             $this->{$key} = $value;
         }
     }
 
+    /**
+     * @return string
+     */
     public function getAgreeUrl()
     {
         return $this->url.'?vote=1';
     }
 
+    /**
+     * @return string
+     */
     public function getDisagreeUrl()
     {
         return $this->url.'?vote=-1';
     }
 
     /**
+     * Return the HTML to display the post.
+     *
      * @return string
      */
     public function render()
