@@ -55,8 +55,8 @@ class AmiriteClient
             $params
         );
 
-        if (!empty($response->posts)) {
-            $post = new Post($response->posts[0]);
+        if (!empty($response['posts'])) {
+            $post = new Post($response['posts'][0]);
 
             return $post;
         }
