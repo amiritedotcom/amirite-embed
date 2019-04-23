@@ -36,20 +36,26 @@ class Post
      *
      * @return string
      */
-    public function render($linkUrl = null)
+    public function render($linkUrl = null, $hrefAttr = null)
     {
         $url = ($linkUrl ?: $this->url).'?votePostId='.$this->id;
+        $upUrl = $url.'&vote=1';
+        $downUrl = $url.'&vote=-1';
+
+        $urlAttr = $hrefAttr ? str_replace('%%URL%%', $url, $hrefAttr) : 'href="'.$url.'" target="_blank" rel="external"';
+        $upUrlAttr = $hrefAttr ? str_replace('%%URL%%', $upUrl, $hrefAttr) : 'href="'.$upUrl.'" target="_blank" rel="external"';
+        $downUrlAttr = $hrefAttr ? str_replace('%%URL%%', $downUrl, $hrefAttr) : 'href="'.$downUrl.'" target="_blank" rel="external"';
 
         return '<div class="amirite-embed">
-            <a class="amirite-header" href="'.$url.'" target="_blank"  rel="external">
+            <a class="amirite-header" '.$urlAttr.' target="_blank"  rel="external">
                 <img src="'.$this->getLogoSrc().'" alt="Amirite" />
                 <small>Cast your vote...</small>
             </a>
             <div class="amirite-post">
-                <a class="amirite-post-text" target="_blank" href="'.$url.'" rel="external">'.$this->html.'</a>
+                <a class="amirite-post-text" target="_blank" '.$urlAttr.' rel="external">'.$this->html.'</a>
                 <p>
-                    <a href="'.$url.'&vote=1" target="_blank" rel="external" class="amirite-vote-btn amirite-yya-btn">Yeah You Are</a>
-                    <a href="'.$url.'&vote=-1" target="_blank"  rel="external" class="amirite-vote-btn amirite-nw-btn">No Way</a>
+                    <a '.$upUrlAttr.' class="amirite-vote-btn amirite-yya-btn">Yeah You Are</a>
+                    <a '.$downUrlAttr.' class="amirite-vote-btn amirite-nw-btn">No Way</a>
                 </p>
             </div>
         </div>';

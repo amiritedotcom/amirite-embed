@@ -35,7 +35,11 @@
     $amirite = new \AmiriteEmbed\AmiriteClient($guzzle);
     $post = $amirite->getPost();
     echo $post->render('https://www.amirite.com/');
+    ?>
 
+    Example with custom attrs:
+    <?php
+    echo $post->render('https://www.amirite.com/', 'href="#" onclick="window.open(\'%%URL%%\', \'_system\'); return false;"');
     ?>
 </div>
 
