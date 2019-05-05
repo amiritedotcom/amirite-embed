@@ -12,6 +12,11 @@ class AmiriteClient
     private $apiUrl = 'https://api.amirite.com/';
 
     /**
+     * @var string
+     */
+    private $siteUrl = 'https://www.amirite.com/';
+
+    /**
      * @var Client
      */
     private $guzzleClient;
@@ -33,6 +38,14 @@ class AmiriteClient
     }
 
     /**
+     * @return string
+     */
+    public function getSiteUrl()
+    {
+        return $this->siteUrl;
+    }
+
+    /**
      * Get one random post from Amirite.
      *
      * @return Post|null
@@ -43,7 +56,7 @@ class AmiriteClient
             'approved' => 1,
             'noImages' => 1,
             'noLinks' => 1,
-            'perPage' => 1,
+            'perPage' => 5,
             'postType' => 'poll',
             'sort' => 'random',
             'timeFilter' => 'month',
@@ -56,6 +69,7 @@ class AmiriteClient
         );
 
         if (!empty($response['posts'])) {
+            shuffle($response['posts']);
             $post = new Post($response['posts'][0]);
 
             return $post;

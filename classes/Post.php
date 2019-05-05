@@ -33,29 +33,35 @@ class Post
      * Return the HTML to display the post.
      *
      * @param string|null $linkUrl
+     * @param string $linkAttributes Additional attributes to add to the <a> tags. %%URL%% will be replaced in the
+     *     string with the link to the post.
      *
      * @return string
      */
-    public function render($linkUrl = null, $hrefAttr = null)
+    public function render($linkUrl = null, $linkAttributes = null)
     {
         $url = ($linkUrl ?: $this->url).'?votePostId='.$this->id;
         $upUrl = $url.'&vote=1';
         $downUrl = $url.'&vote=-1';
 
-        $urlAttr = $hrefAttr ? str_replace('%%URL%%', $url, $hrefAttr) : 'href="'.$url.'" target="_blank" rel="external"';
-        $upUrlAttr = $hrefAttr ? str_replace('%%URL%%', $upUrl, $hrefAttr) : 'href="'.$upUrl.'" target="_blank" rel="external"';
-        $downUrlAttr = $hrefAttr ? str_replace('%%URL%%', $downUrl, $hrefAttr) : 'href="'.$downUrl.'" target="_blank" rel="external"';
+        if ($linkAttributes === null) {
+            $linkAttributes = 'href="%%URL%%" target="_blank" rel="external"';
+        }
+
+        $urlAttributes = str_replace('%%URL%%', $url, $linkAttributes);
+        $upUrlAttributes = str_replace('%%URL%%', $upUrl, $linkAttributes);
+        $downUrlAttributes = str_replace('%%URL%%', $downUrl, $linkAttributes);
 
         return '<div class="amirite-embed">
-            <a class="amirite-header" '.$urlAttr.' target="_blank"  rel="external">
+            <a class="amirite-header" '.$urlAttributes.'>
                 <img src="'.$this->getLogoSrc().'" alt="Amirite" />
                 <small>Cast your vote...</small>
             </a>
             <div class="amirite-post">
-                <a class="amirite-post-text" target="_blank" '.$urlAttr.' rel="external">'.$this->html.'</a>
+                <a class="amirite-post-text" '.$urlAttributes.'>'.$this->html.'</a>
                 <p>
-                    <a '.$upUrlAttr.' class="amirite-vote-btn amirite-yya-btn">Yeah You Are</a>
-                    <a '.$downUrlAttr.' class="amirite-vote-btn amirite-nw-btn">No Way</a>
+                    <a '.$upUrlAttributes.' class="amirite-vote-btn amirite-yya-btn">Yeah You Are</a>
+                    <a '.$downUrlAttributes.' class="amirite-vote-btn amirite-nw-btn">No Way</a>
                 </p>
             </div>
         </div>';
